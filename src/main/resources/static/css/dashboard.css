@@ -1,0 +1,20 @@
+.sidebar {
+    height: 300%;
+    background-color: #F8F9FA;
+    float:left;
+}
+
+.imagesec {
+}
+
+.namesection {
+    text-align:center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    text-weight: bold;
+}
+
+.buttonsection {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

@@ -1,0 +1,109 @@
+.chatcontainer {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    margin-left: 10vw;
+    float:left;
+    width: 65vw;
+
+}
+
+.chatcontainer label {
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+}
+
+.chatcontainer span {
+    float:right;
+    font-size: 15px;
+    font-weight: bold;
+    display:inline-block;
+}
+
+.chatcontainer a i {
+    float:right;
+    display: inline-block;
+}
+
+.likedislike {
+    display: inline-block;
+}
+
+.disablelink {
+    pointer-events: none;
+    cursor: default;
+    background-color: gray;
+}
+
+
+.social-like, .social-dislike {
+    font-size: 16px;
+    /*width: 48%;*/
+    background-color: #00903B;
+    color: #fff;
+    cursor: pointer;
+    display:inline-block;
+
+}
+
+.social-like-disable, .social-dislike-disable {
+    font-size: 16px;
+    /*width: 48%;*/
+    background-color: gray;
+    color: #fff;
+    cursor: not-allowed;
+    display:inline-block;
+    border-radius: 5px;
+
+}
+
+.social-like:hover, .social-dislike:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.social-like:active, .social-dislike:active {
+    background-color: #00903B;
+}
+
+.social-like:active .count, .social-dislike:active .dislike {
+    background-color: #00903B;
+}
+
+
+.social-like {
+    border-radius: 5px;
+}
+
+.social-dislike {
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.count, .like, .dislike {
+    padding:10px;
+}
+
+.count, .dislike {
+    display:inline;
+    background-color: #00903B;
+    border-radius: 50%;
+    font-size:10px;
+}
+
+.dislike {
+    margin-left: -10px;
+}
+
+.count {
+    margin-right: -10px;
+}
+
+.tags {
+    display: inline-block;
+}
+
+
