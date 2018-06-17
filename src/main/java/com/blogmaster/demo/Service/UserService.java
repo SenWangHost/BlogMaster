@@ -17,4 +17,10 @@ public class UserService {
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+    /**
+     * save the user information in database
+     */
+    public User save(User user) {
+        return userRepository.save(user);
+    }
 }

@@ -17,26 +17,31 @@
             </div>
             <div class="card-body">
                 <p class="card-title">Please provide the following information:</p>
-                <form action="/register" method="post">
+                <form action="/register" th:object="${registerForm}" method="post">
                     <div class="form-group">
                         <label for="email"><strong>Email Address</strong></label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="xyz@example.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="xyz@example.com" th:field="*{email}">
+                        <p class="form-control-static text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Address cannot be empty!</p>
                     </div>
                     <div class="form-group">
                         <label for="password1"><strong>Password</strong></label>
-                        <input type="password" class="form-control" id="password1" name="password1" placeholder="your password">
+                        <input type="password" class="form-control" id="password1" name="password" placeholder="your password" th:field="*{password}">
+                        <p class="form-control-static text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password cannot be empty!</p>
                     </div>
                     <div class="form-group">
-                        <label for="password2"><strong>Repeat Password</strong></label>
-                        <input type="password" class="form-control" id="password2" name="password2" placeholder="repeat your password">
+                        <label for="confirmPasswordId"><strong>Repeat Password</strong></label>
+                        <input type="password" class="form-control" id="confirmPasswordId" name="confirmPassword" placeholder="repeat your password" th:field="*{confirmPassword}">
+                        <p class="form-control-static text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Confirm password cannot be empty!</p>
                     </div>
                     <div class="form-group">
                         <label for="firstname"><strong>First Name</strong></label>
-                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="firstname">
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="firstname" th:field="*{firstname}">
+                        <p class="form-control-static text-danger" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Firstname cannot be empty!</p>
                     </div>
                     <div class="form-group">
                         <label for="lastname"><strong>Last Name</strong></label>
-                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="lastname">
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="lastname" th:field="*{lastname}">
+                        <p class="form-control-static text-danger" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Lastname cannot be empty!</p>
                     </div>
                     <button type="submit" class="btn btn-primary" name="button" value="register">Register</button>
                     <a class="btn btn-primary" style="color:white" th:href="login" href="login">Already have account</a>
