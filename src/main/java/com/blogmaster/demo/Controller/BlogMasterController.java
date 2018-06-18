@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -32,7 +33,12 @@ public class BlogMasterController {
      * the mapping to the login page
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage(Model model) {
+    public String loginPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            return "homepage";
+        }
+        System.out.println(session.getAttribute("user"));
         model.addAttribute("loginForm", new LoginForm());
         return "login";
     }
@@ -40,8 +46,9 @@ public class BlogMasterController {
      * the method to handle the login form
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model, @Valid LoginForm loginForm, BindingResult result) {
+    public String login(HttpServletRequest request, Model model, @Valid LoginForm loginForm, BindingResult result) {
         model.addAttribute("loginForm", loginForm);
+        HttpSession session = request.getSession();
         if (result.hasErrors()) {
             return "login";
         }
@@ -54,6 +61,7 @@ public class BlogMasterController {
             result.rejectValue("password", "password", "The password is incorrect!");
             return "login";
         }
+        session.setAttribute("user", user);
         return "homepage";
     }
     /**
