@@ -102,4 +102,15 @@ public class BlogMasterController {
         userService.save(user);
         return "redirect:/login";
     }
+    /**
+     * the method to logout
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            session.setAttribute("user", null);
+        }
+        return "homepage";
+    }
 }
