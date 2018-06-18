@@ -2,6 +2,7 @@ package com.blogmaster.demo.Controller;
 
 
 import com.blogmaster.demo.Databean.User;
+import com.blogmaster.demo.FormBean.LoginForm;
 import com.blogmaster.demo.FormBean.RegisterForm;
 import com.blogmaster.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -30,8 +32,29 @@ public class BlogMasterController {
      * the mapping to the login page
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage() {
+    public String loginPage(Model model) {
+        model.addAttribute("loginForm", new LoginForm());
         return "login";
+    }
+    /**
+     * the method to handle the login form
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(Model model, @Valid LoginForm loginForm, BindingResult result) {
+        model.addAttribute("loginForm", loginForm);
+        if (result.hasErrors()) {
+            return "login";
+        }
+        User user = userService.findUserByEmail(loginForm.getEmail());
+        if (user == null) {
+            result.rejectValue("email", "email", "This email address doesn't exist!");
+            return "login";
+        }
+        if (!user.getPassword().equals(loginForm.getPassword())) {
+            result.rejectValue("password", "password", "The password is incorrect!");
+            return "login";
+        }
+        return "homepage";
     }
     /**
      * the mapping to the register page
@@ -49,7 +72,8 @@ public class BlogMasterController {
         model.addAttribute("registerForm", registerForm);
         boolean valid = true;
         if (userService.findUserByEmail(registerForm.getEmail()) != null) {
-            result.rejectValue("exist", "exist", "This user has already been registered!");
+            result.rejectValue("email", "email", "This email address has already been registered!");
+            // model.addAttribute("exist", "This email address has already been registered!");
             valid = false;
         }
         if (!registerForm.checkPasswordMatch()) {

@@ -17,14 +17,16 @@
         </div>
         <div class="card-body">
             <p class="card-title">Please provide your email and password:</p>
-            <form action="/login" method="post">
+            <form action="/login" th:object="${loginForm}" method="post">
                 <div class="form-group">
                     <label for="email"><strong>Email Address</strong></label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="xyz@example.com" />
+                    <input type="email" class="form-control" name="email" id="email" placeholder="xyz@example.com" th:field="*{email}"/>
+                    <p class="form-control-static text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email address cannot be empty!</p>
                 </div>
                 <div class="form-group">
                     <label for="password"><strong>Password</strong></label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="your password" />
+                    <input type="password" class="form-control" name="password" id="password" placeholder="your password" th:field="*{password}"/>
+                    <p class="form-control-static text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password cannot be empty!</p>
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="check" />
