@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Page</title>
+    <link rel="stylesheet" th:href="@{css/dashboard.css}" href="../static/css/dashboard.css" />
+</head>
+<body>
+    <div th:fragment="dashboard">
+        <div class="col-sm-2 sidebar">
+            <div class="imagesec">
+                <img th:src="@{/images/accountimage.png}" src="../static/images/accountimage.png" width="200vw" height="200vh" alt="accountimage" />
+            </div>
+            <div class="namesection">
+                <!--<p>${user.firstname} ${user.lastname}</p>-->
+            </div>
+            <div class="buttonsection">
+                <a class="btn btn-outline-success btn-lg btn-block" th:href="@{/homepage}" href="homepage">Public Space</a>
+            </div>
+            <div class="buttonsection">
+                <a class="btn btn-outline-success btn-lg btn-block" th:href="@{/myblogs}" href="myblogs">My Blogs</a>
+            </div>
+            <div class="buttonsection">
+                <a class="btn btn-outline-success btn-lg btn-block" th:href="@{/myfavorites}" href="myfavorites">My Favorites</a>
+            </div>
+            <div class="buttonsection">
+                <a class="btn btn-outline-success btn-lg btn-block" th:href="@{/search}" href="search">Search Blogs</a>
+            </div>
+            <div class="buttonsection">
+                <a class="btn btn-outline-warning btn-lg btn-block" th:href="@{/logout}" href="logout">Log Out</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

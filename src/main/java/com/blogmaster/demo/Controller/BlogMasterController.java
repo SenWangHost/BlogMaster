@@ -36,7 +36,7 @@ public class BlogMasterController {
     public String loginPage(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
-            return "homepage";
+            return "redirect:/homepage";
         }
         System.out.println(session.getAttribute("user"));
         model.addAttribute("loginForm", new LoginForm());
@@ -112,5 +112,17 @@ public class BlogMasterController {
             session.setAttribute("user", null);
         }
         return "homepage";
+    }
+
+    /**
+     * the method for serving logout page
+     */
+    @RequestMapping(value = "/myblogs", method = RequestMethod.GET)
+    public String myBlogPage(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+        return "myblogs";
     }
 }
